@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="http://react.file.alimmdn.com/aes.js"></script>
+<body>
+<script>
+    var key = "zCpdywHdFfPYQwYi"
+    console.log('加密用的随机数key:    '+key)
+
+    var textPlain = "{id:'123',name:'xiaoyu',address:'address:'上海市浦东新区'}"   // 明文
+    console.log("加密前textPlain："+textPlain+'\n');
+
+
+    // 加密
+    textEnc = AESEncrypt(textPlain,key)
+    console.log('加密后的textPlain：'+textEnc+'\n')
+
+    // 解密
+    let textDec = AESDecrypt(textEnc,key)
+    console.log('解密后textPlain：  ',textDec)
+
+
+    // AES加密函数
+    function AESEncrypt(textPalin,key){
+        var key = CryptoJS.enc.Utf8.parse(key)
+        var textEnc = CryptoJS.AES.encrypt(textPlain, key, { 
+            iv: CryptoJS.enc.Utf8.parse("1234567812345678"),
+            mode: CryptoJS.mode.CBC,
+            //padding: CryptoJS.pad.Iso10126
+        })
+        return textEnc
+    }
+
+    // AES解密函数
+    function AESDecrypt(word,key) {
+        var key = CryptoJS.enc.Utf8.parse(key)
+        let decrypt = CryptoJS.AES.decrypt(word, key, { 
+            iv: CryptoJS.enc.Utf8.parse("1234567812345678"),
+            mode: CryptoJS.mode.CBC, 
+            //padding: CryptoJS.pad.Pkcs7 
+        })
+        let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8)
+        return decryptedStr.toString();
+    }
+</script>
+</body>
+</html>

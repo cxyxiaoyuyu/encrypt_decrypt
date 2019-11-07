@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jsencrypt.js"></script>
+    <script src="http://react.file.alimmdn.com/aes.js"></script>
+</head>
+<body>
+    <script>
+        var privateKey = `-----BEGIN RSA PRIVATE KEY-----
+        MIICWwIBAAKBgG+u7KERg6DWKDhK7NRUe63FPpxbzBAUWxULzjYCJexsvgzXjj/m
+        UPvTR/wjFXf49sidHDcEwhzx18k8aJ0+Rt5AUtNExTeAIIGo/mytyQwlS0GuazdW
+        Sqw+1IOEJe88f/I62prFuuVuY+cIxucXDVpxwv5mfkMjeiTIixWyju4tAgMBAAEC
+        gYABkOtiitNUswwXVf2iMJkXY7ewC5198DsivWqj2T3c5d14YqFtBfbGwTy2LWvE
+        peoYABQANYHfVAjZmo5A/jmSKWHaCHd+k8sMQeThdklGVGHBctZ46aJ32c4CRmZa
+        pHAtgYVYBxOyn/55WlJb9cYEYGE1M9ouOmsEwW/sUruyZQJBANmmXVhte5LNCrmr
+        c7GFbJQLNT4YTcGPXHyRdxjGBRfcgAK0IHREUrBGjCY+N4DYd3QxRYTAF+EYileF
+        ou3C1bcCQQCDXKz9d3pibVtfi/qcO6bn3Bdqfv641sEO5++dD/SCAeUSTrd8KO/e
+        ZoVIkYV8lcj5Ol6cRhXr9TGTGHUXzbs7AkACvxmwcvk7OgEnpKU6GT/sglOyq+XX
+        SnLVU5SYKG+KBItM/W7naLFObiV4mhJjOtgPDEwfR7lFauTcA+CxdWLzAkBaOEVr
+        lCqO/VKbTdVihim85tGCSBSEOKLBrRRJyBKDU+/TYhLtCGSuV7VEwQVwKqOsYKVo
+        KU6XD4Dr6QlKvvbPAkEAkjlU5ua5BfGh601U8va1xWyxh0TqemBTsyoQ8bSwOpZH
+        NgGjWqv5Z0QoK99pJv7VfReKbLyIg2MXhpigTogeWA==
+        -----END RSA PRIVATE KEY-----`
+
+        var publicKey = `-----BEGIN PUBLIC KEY-----
+        MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgG+u7KERg6DWKDhK7NRUe63FPpxb
+        zBAUWxULzjYCJexsvgzXjj/mUPvTR/wjFXf49sidHDcEwhzx18k8aJ0+Rt5AUtNE
+        xTeAIIGo/mytyQwlS0GuazdWSqw+1IOEJe88f/I62prFuuVuY+cIxucXDVpxwv5m
+        fkMjeiTIixWyju4tAgMBAAE=
+        -----END PUBLIC KEY-----`
+
+        var crypt = new JSEncrypt()
+        crypt.setKey(publicKey)
+
+        var key = "¸ÁyËNÑìÛ½Ü}_«"
+        // var key = "zCpdywHdFfPYQwYi"
+        // var key = 'b80cc179cb4ed1ecdbbddc7d5fab8005'
+
+        console.log('加密前的key:   '+key)
+
+        var keyEnc = crypt.encrypt(key)
+        console.log('rsa加密后key：   '+ keyEnc)
+        
+        crypt.setKey(privateKey)
+        let decEnc = crypt.decrypt(keyEnc)
+        console.log('解密后的key:    '+decEnc)
+
+    </script>  
+</body>
+</html>
