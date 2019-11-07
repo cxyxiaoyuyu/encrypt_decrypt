@@ -50,7 +50,7 @@
 
     // AES加密textPlain
     textEnc = AESEncrypt(textPlain,key)
-    console.log('加密后的textPlain：'+textEnc+'\n')
+    console.log('加密后的textPlain：',textEnc,'\n')
     console.log('\n')
 
     // 解密
@@ -73,7 +73,7 @@
             mode: CryptoJS.mode.CBC,
             //padding: CryptoJS.pad.Iso10126
         })
-        return textEnc
+        return textEnc.toString()
     }
 
     // AES解密函数
